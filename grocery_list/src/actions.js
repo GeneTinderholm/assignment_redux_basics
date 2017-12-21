@@ -11,7 +11,7 @@ let itemId = 1;
 let listId = 1;
 
 
-export function setPurchased(purchased,id) {
+export function setPurchased({data}) {
   return {
     type: SET_PURCHASED,
     data: {
@@ -21,36 +21,36 @@ export function setPurchased(purchased,id) {
   }
 }
 
-export function setPurchaseFilter(purchaseFilter){
+export function setPurchaseFilter({data}){
   return{
   type: SET_PURCHASE_FILTER,
   purchaseFilter: purchaseFilter,
 }
 }
 
-export function setCategoryFilter(categoryFilter){
+export function setCategoryFilter({data}){
   return {
     type: SET_CATEGORY_FILTER,
     categoryFilter: categoryFilter,
   }
 }
 
-export function addItem(item){
+export function addItem({data}){
   return {
     type: ADD_ITEM,
-    item,
+    data,
   }
 
 }
 
-export function updateList(list){
+export function updateList({data}){
   return {
     type: UPDATE_LIST,
     list,
   }
 }
 
-export function createItem(data){
+export function createItem({data}){
   return{
     type: CREATE_ITEM,
     data: {
@@ -60,7 +60,7 @@ export function createItem(data){
   }
 }
 
-export function createList(data){
+export function createList({data}){
   return{
     type: CREATE_LIST,
     data: {
@@ -70,7 +70,7 @@ export function createList(data){
   }
 }
 
-export function removeItem(data, item){
+export function removeItem({data}){
   return{
     type: REMOVE_ITEM,
     data: {
