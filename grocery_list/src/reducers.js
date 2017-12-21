@@ -1,8 +1,8 @@
 
 
 
-import {ADD_ITEM, REMOVE_ITEM, CREATE_ITEM, SET_PURCHASE_FILTER, SET_CATEGORY_FILTER, SET_PURCHASED} from './actions'
-import {addItem, createList, removeItem, updateList, createItem} from './actions';
+import {ADD_ITEM, REMOVE_ITEM, CREATE_ITEM, SET_PURCHASE_FILTER, SET_CATEGORY_FILTER, PURCHASE_ITEM} from './actions'
+import {addItem, createList, removeItem, updateList, createItem, purchaseItem} from './actions';
 
 
 
@@ -23,13 +23,7 @@ function groceryListApp(state = initialState, action) {
           action.data
         ]
       }
-    case REMOVE_ITEM:
-      return {
-        ...state,
-        groceryList: [
-          ...action.data
-        ]
-      }
+   
     case SET_PURCHASE_FILTER:
       return{
         ...state,
@@ -40,19 +34,35 @@ function groceryListApp(state = initialState, action) {
         ...state,
         purchaseFilter: action.data 
       }
-    case SET_PURCHASED:
+    case PURCHASE_ITEM:
       return{
         ...state,
+        groceryList: 
+        state.groceryList.map(item =>{
+        if (item.name === action.data.name){
+        return {...item, purchased: 1} 
+        } else {
+          return item
+        }
+     
+        })
         
       }
-    case CREATE_ITEM:
-      return{
-        ...state,
-        itemList:[
-          ...state.itemList,
-          action.data
-        ]
+
+    case FILTER_EVENT:
+     return{
+     ...state,
+     groceryList:
+     state.groceryList.map(item =>{
+      if (item.purchased === state.purchaseFilter){
+        return item
       }
+
+     })
+
+
+     }
+   
     default:
       return state;
   }
