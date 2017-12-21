@@ -1,7 +1,17 @@
+
+
+
+import {ADD_ITEM, REMOVE_ITEM, SET_PURCHASE_FILTER, SET_CATEGORY_FILTER, SET_PURCHASED} from './actions'
+import {addItem, createList, removeItem, updateList, createItem} from './actions';
+
+
+
 const initialState = {
   list: [],
   purchaseFilter: 'SHOW_ALL',
   categoryFilter: 'SHOW_ALL',
+  purchased: 0,
+
 }
 
 function groceryListApp(state = initialState, action) {
@@ -9,15 +19,15 @@ function groceryListApp(state = initialState, action) {
     case ADD_ITEM:
       return{
         ...state,
-        list[
+        list: [
           ...state.list,
           action.data
         ]
       }
     case REMOVE_ITEM:
-      return{
+      return {
         ...state,
-        list[
+        list: [
           ...action.data
         ]
       }
@@ -31,5 +41,12 @@ function groceryListApp(state = initialState, action) {
         ...state,
         purchaseFilter: action.data 
       }
+    case SET_PURCHASED:
+      return{
+        ...state,
+        purchased: action.data
+      }
   }
 }
+
+export default groceryListApp
